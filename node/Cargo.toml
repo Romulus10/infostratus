@@ -1,20 +1,20 @@
 [package]
 authors = ['Substrate DevHub <https://github.com/substrate-developer-hub>']
 build = 'build.rs'
-description = 'A fresh FRAME-based Substrate node, ready for hacking.'
+description = 'The Infostratus substrate node.'
 edition = '2018'
 homepage = 'https://substrate.dev'
 license = 'Unlicense'
-name = 'node-template'
+name = 'node-infostratus'
 publish = false
-repository = 'https://github.com/substrate-developer-hub/substrate-node-template/'
+repository = 'https://github.com/Romulus10/infostratus'
 version = '3.0.0-monthly-2021-09+1'
 
 [package.metadata.docs.rs]
 targets = ['x86_64-unknown-linux-gnu']
 
 [[bin]]
-name = 'node-template'
+name = 'node-infostratus'
 
 [build-dependencies.substrate-build-script-utils]
 git = 'https://github.com/paritytech/substrate.git'
@@ -25,7 +25,7 @@ version = '3.0.0'
 jsonrpc-core = '18.0.0'
 structopt = '0.3.8'
 
-[dependencies.node-template-runtime]
+[dependencies.infostratus-runtime]
 path = '../runtime'
 version = '3.0.0-monthly-2021-09+1'
 
@@ -169,4 +169,4 @@ version = '4.0.0-dev'
 
 [features]
 default = []
-runtime-benchmarks = ['node-template-runtime/runtime-benchmarks']
+runtime-benchmarks = ['infostratus-runtime/runtime-benchmarks']
