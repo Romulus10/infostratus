@@ -16,6 +16,8 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
 
+RUN /root/.cargo/bin/rustup default nightly
+
 EXPOSE 9944
 
 ENTRYPOINT [ "/root/.cargo/bin/cargo", "run" ]
