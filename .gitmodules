@@ -1,0 +1,9 @@
+[submodule "pallets/infostratus"]
+	path = pallets/infostratus
+	url = git@github.com:Romulus10/infostratus_pallet.git
+[submodule "pallets/trust"]
+	path = pallets/trust
+	url = git@github.com:fennelLabs/fennel_trust_pallet.git
+[submodule "pallets/keystore"]
+	path = pallets/keystore
+	url = git@github.com:fennelLabs/fennel_keystore_pallet.git
