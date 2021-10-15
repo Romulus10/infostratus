@@ -17,6 +17,11 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN /root/.cargo/bin/rustup default nightly
+RUN /root/.cargo/bin/rustup target add wasm32-unknown-unknown
+RUN /root/.cargo/bin/cargo build
+RUN /root/.cargo/bin/cargo test
+RUN /root/.cargo/bin/cargo bench
+RUN /root/.cargo/bin/cargo doc
 
 EXPOSE 9944
 
