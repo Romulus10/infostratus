@@ -1,8 +1,5 @@
 FROM ubuntu:latest
 
-COPY . /opt/app
-WORKDIR /opt/app
-
 RUN DEBIAN_FRONTEND=noninteractive \
     apt-get update -y && \
     ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime && \
@@ -15,14 +12,17 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
-
 RUN /root/.cargo/bin/rustup default nightly
 RUN /root/.cargo/bin/rustup target add wasm32-unknown-unknown
+
+EXPOSE 9944
+
+COPY . /opt/app
+WORKDIR /opt/app
+
 RUN /root/.cargo/bin/cargo build
 RUN /root/.cargo/bin/cargo test
 RUN /root/.cargo/bin/cargo bench
 RUN /root/.cargo/bin/cargo doc
-
-EXPOSE 9944
 
 ENTRYPOINT [ "/root/.cargo/bin/cargo", "run" ]

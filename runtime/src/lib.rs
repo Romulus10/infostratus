@@ -43,6 +43,8 @@ pub use sp_runtime::{Perbill, Permill};
 /// Import the template pallet.
 pub use pallet_template;
 pub use pallet_infostratus;
+pub use pallet_keystore;
+pub use pallet_trust;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -276,6 +278,14 @@ impl pallet_infostratus::Config for Runtime {
 	type Event = Event;
 }
 
+impl pallet_keystore::Config for Runtime {
+	type Event = Event;
+}
+
+impl pallet_trust::Config for Runtime {
+	type Event = Event;
+}
+
 // Create the runtime by composing the FRAME pallets that were previously configured.
 construct_runtime!(
 	pub enum Runtime where
@@ -294,6 +304,8 @@ construct_runtime!(
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template::{Pallet, Call, Storage, Event<T>},
 		InfostratusModule: pallet_infostratus::{Pallet, Call, Storage, Event<T>},
+		TrustModule: pallet_trust::{Pallet, Call, Storage, Event<T>},
+		KeystoreModule: pallet_keystore::{Pallet, Call, Storage, Event<T>},
 	}
 );
 
@@ -471,7 +483,6 @@ impl_runtime_apis! {
 			list_benchmark!(list, extra, pallet_balances, Balances);
 			list_benchmark!(list, extra, pallet_timestamp, Timestamp);
 			list_benchmark!(list, extra, pallet_template, TemplateModule);
-			list_benchmark!(list, extra, pallet_infostratus, InfostratusModule);
 
 			let storage_info = AllPalletsWithSystem::storage_info();
 
@@ -506,7 +517,6 @@ impl_runtime_apis! {
 			add_benchmark!(params, batches, pallet_balances, Balances);
 			add_benchmark!(params, batches, pallet_timestamp, Timestamp);
 			add_benchmark!(params, batches, pallet_template, TemplateModule);
-			add_benchmark!(params, batches, pallet_infostratus, InfostratusModule);
 
 			if batches.is_empty() { return Err("Benchmark not found for this pallet.".into()) }
 			Ok(batches)

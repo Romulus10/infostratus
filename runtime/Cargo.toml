@@ -21,6 +21,16 @@ default-features = false
 path = '../pallets/infostratus'
 version = '0.1.0'
 
+[dependencies.pallet-trust]
+default-features = false
+path = '../pallets/trust'
+version = '2.0.0'
+
+[dependencies.pallet-keystore]
+default-features = false
+path = '../pallets/keystore'
+version = '2.0.0'
+
 [build-dependencies.substrate-wasm-builder]
 git = 'https://github.com/paritytech/substrate.git'
 tag = 'monthly-2021-09+1'
