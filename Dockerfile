@@ -12,9 +12,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN /root/.cargo/bin/rustup update nightly
+RUN /root/.cargo/bin/rustup update stable
 RUN /root/.cargo/bin/rustup default nightly
-RUN /root/.cargo/bin/rustup target add wasm32-unknown-unknown
-
+RUN /root/.cargo/bin/rustup target add wasm32-unknown-unknown --toolchain nightly
 EXPOSE 9944
 
 COPY . /opt/app
